@@ -1,10 +1,10 @@
 import numpy as np
 
 class State:
-    def __init__(self,N,nList):
-        self.stateMat = np.zeros((N,1))
-        for n in nList:
-            self.stateMat[n] = 1/np.sqrt(len(nList))
+    def __init__(self,n,markedList):
+        self.stateMat = np.zeros((n,1))
+        for marked in markedList:
+            self.stateMat[marked] = 1/np.sqrt(len(markedList))
 
     def getState(self):
         return self.stateMat
