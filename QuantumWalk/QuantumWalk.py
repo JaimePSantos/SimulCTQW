@@ -13,4 +13,3 @@ class QuantumWalk:
 
     def getWalk(self):
         return self._finalState
-
