@@ -2,15 +2,18 @@ import numpy as np
 
 class State:
     def __init__(self,n,markedList):
-        self.stateMat = np.zeros((n,1))
+        self._stateMat = np.zeros((n,1))
         for marked in markedList:
-            self.stateMat[marked] = 1/np.sqrt(len(markedList))
+            self._stateMat[marked] = 1/np.sqrt(len(markedList))
+
+    def __mul__(self,other):
+        return self._stateMat*other
+
+    def __rmul__(self,other):
+        return other*self._stateMat
 
     def getState(self):
-        return self.stateMat
+        return self._stateMat
 
     def setState(self,newState):
-        self.stateMat = newState
-
-    def transformState(self,operator):
-        self.stateMat = np.dot(operator,self.stateMat)
+        self._stateMat = newState

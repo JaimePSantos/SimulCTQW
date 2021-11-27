@@ -1,6 +1,7 @@
 job-ready-python.pdf
-Resources/runWalk.py
+Resources/*
 __pycache__/
+activate
 
 # Swap
 [._]*.s[a-v][a-z]

@@ -12,6 +12,12 @@ class Operator:
             self._gamma = gamma
         self._operator = linalg.expm(-1j*self._gamma*self._ham*self._time)
 
+    def __mul__(self,other):
+        return self._operator*other
+
+    def __rmul__(self,other):
+        return other*self._operator
+
     def setOperator(self,newHam,newTime = None, newGamma = None):
         self._ham = newHam
         if(newTime is None):
