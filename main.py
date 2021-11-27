@@ -23,23 +23,27 @@ if __name__ == '__main__':
     gamma=1
     marked = [int(n/2)]
     initState = State(n,marked)
-    # print(initState.getState())
+    initState.buildState()
+    print(initState.getState())
 
     graph = Graph({}).linegraph(n)
+    # print(graph)
 
-    hamilt = Hamiltonian(graph)
-    hamilt.setHam(graph)
+    hamilt = Hamiltonian(n,graph)
+    hamilt.buildHam()
+    print(hamilt.getHam())
+    # hamilt.setHam(graph)
     # print(hamilt.getHam())
 
-    op = Operator(hamilt,t,gamma)
-    # print(op.getOperator())
-
-    walk = QuantumWalk(initState,op).getWalk()
-    # print(walk.getWalk())
-
-    probs = np.zeros((n,1))
-    for x in range(n):
-        probs[x]=walk[x]*np.conjugate(walk[x])
-    print(probs)
+    # op = Operator(hamilt,t,gamma)
+    # # print(op.getOperator())
+    #
+    # walk = QuantumWalk(initState,op).getWalk()
+    # # print(walk.getWalk())
+    #
+    # probs = np.zeros((n,1))
+    # for x in range(n):
+    #     probs[x]=walk[x]*np.conjugate(walk[x])
+    # print(probs)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

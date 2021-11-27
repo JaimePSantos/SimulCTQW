@@ -5,6 +5,7 @@ class State:
     def __init__(self, n, stateList=None):
         self._n = n
         self._stateMat = np.zeros((self._n, 1))
+        self._stateList = None
         if stateList is not None:
             self._stateList = stateList
 
@@ -15,23 +16,26 @@ class State:
         return other * self._stateMat
 
     def buildState(self):
-        for state in self._stateList:
-            self._stateMat[state] = 1 / np.sqrt(len(self._stateList))
-
-    def getState(self):
-        return self._stateMat
-
-    def setState(self, newState):
-        self._stateMat = newState
+        if self._stateList is not None:
+            for state in self._stateList:
+                self._stateMat[state] = 1 / np.sqrt(len(self._stateList))
 
     def setDim(self,newN):
         self._n = newN
 
-    def getDim(self,newN):
+    def getDim(self):
         return self._n
 
-    def setStateList(self,newStateList):
-        self._stateList = newStateList
+    def setStateList(self,newState):
+        self._stateList = newState
 
     def getStateList(self):
         return self._stateList
+
+    def setState(self, newState):
+        self._n = newState.getDim()
+        self._stateList = newState.getStateList()
+        self._stateMat = newState.getState()
+
+    def getState(self):
+        return self._stateMat
