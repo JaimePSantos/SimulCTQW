@@ -3,12 +3,14 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import numpy as np
+from matplotlib import pyplot as plt
 
 from QuantumWalk.State import State
 from QuantumWalk.graphs import Graph
 from QuantumWalk.Hamiltonian import Hamiltonian
 from QuantumWalk.Operator import Operator
 from QuantumWalk.QuantumWalk import QuantumWalk
+from QuantumWalk.Graph import Graph2
 
 
 def print_hi(name):
@@ -57,5 +59,10 @@ if __name__ == '__main__':
     # for x in range(n):
     #     probs[x]=walk[x]*np.conjugate(walk[x])
     # print(probs)
-
+    graph = Graph2()
+    graph.completeGraph(5)
+    graph.addNode(5)
+    graph.addEdge(4,5)
+    graph.drawGraph()
+    plt.show()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
