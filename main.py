@@ -24,23 +24,35 @@ if __name__ == '__main__':
     marked = [int(n/2)]
     initState = State(n,marked)
     initState.buildState()
-    print(initState.getState())
+    # print(initState.getState())
 
     graph = Graph({}).linegraph(n)
     # print(graph)
 
     hamilt = Hamiltonian(n,graph)
     hamilt.buildHam()
-    print(hamilt.getHam())
+    # print(hamilt.getHam())
     # hamilt.setHam(graph)
     # print(hamilt.getHam())
 
-    # op = Operator(hamilt,t,gamma)
-    # # print(op.getOperator())
-    #
-    # walk = QuantumWalk(initState,op).getWalk()
-    # # print(walk.getWalk())
-    #
+    op = Operator(hamilt,t,gamma)
+    op.buildOperator()
+    # print(op.getOperator())
+
+    walk = QuantumWalk(initState,op)
+    walk.buildWalk()
+    print("Walk 1 \n%s\n"%walk.getWalk())
+    print("Walk 1 Prob \n%s\n"%walk.toProbability())
+
+    op2 = Operator(hamilt,10,10)
+    op2.buildOperator()
+    walk2 = QuantumWalk(initState,op2)
+    walk2.buildWalk()
+    # print("Walk 2\n %s\n"%walk2.getWalk())
+
+    walk.setWalk(walk2)
+    # print("walk 1 + 2\n %s\n"%walk.getWalk())
+
     # probs = np.zeros((n,1))
     # for x in range(n):
     #     probs[x]=walk[x]*np.conjugate(walk[x])
