@@ -10,6 +10,7 @@ from QuantumWalk.graphs import Graph
 from QuantumWalk.Hamiltonian import Hamiltonian
 from QuantumWalk.Operator import Operator
 from QuantumWalk.QuantumWalk import QuantumWalk
+from QuantumWalk.ProbabilityDistribution import ProbabilityDistribution
 from QuantumWalk.Graph import Graph2
 
 
@@ -43,26 +44,29 @@ if __name__ == '__main__':
 
     walk = QuantumWalk(initState,op)
     walk.buildWalk()
-    print("Walk 1 \n%s\n"%walk.getWalk())
+    print("Walk 1 \n%s\n"%(walk.getWalk().getStateVec()))
     print("Walk 1 Prob \n%s\n"%walk.toProbability())
+    probDist = ProbabilityDistribution(walk.getWalk())
+    probDist.buildProbDist()
+    print("Prob Dist 1 \n%s\n"%probDist.getProbDist())
 
-    op2 = Operator(hamilt,10,10)
-    op2.buildOperator()
-    walk2 = QuantumWalk(initState,op2)
-    walk2.buildWalk()
-    # print("Walk 2\n %s\n"%walk2.getWalk())
-
-    walk.setWalk(walk2)
-    # print("walk 1 + 2\n %s\n"%walk.getWalk())
-
-    # probs = np.zeros((n,1))
-    # for x in range(n):
-    #     probs[x]=walk[x]*np.conjugate(walk[x])
-    # print(probs)
-    graph = Graph2()
-    graph.completeGraph(5)
-    graph.addNode(5)
-    graph.addEdge(4,5)
-    graph.drawGraph()
-    plt.show()
+    # op2 = Operator(hamilt,10,10)
+    # op2.buildOperator()
+    # walk2 = QuantumWalk(initState,op2)
+    # walk2.buildWalk()
+    # # print("Walk 2\n %s\n"%walk2.getWalk())
+    #
+    # walk.setWalk(walk2)
+    # # print("walk 1 + 2\n %s\n"%walk.getWalk())
+    #
+    # # probs = np.zeros((n,1))
+    # # for x in range(n):
+    # #     probs[x]=walk[x]*np.conjugate(walk[x])
+    # # print(probs)
+    # graph = Graph2()
+    # graph.completeGraph(5)
+    # graph.addNode(5)
+    # graph.addEdge(4,5)
+    # graph.drawGraph()
+    # plt.show()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

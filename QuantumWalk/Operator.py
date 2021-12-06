@@ -2,15 +2,11 @@ import numpy as np
 from scipy import linalg
 
 class Operator:
-    def __init__(self,ham,time=None,gamma=None):
+    def __init__(self,ham,time=0,gamma=1):
         self._ham = ham
-        self._time = 0
-        self._gamma = 1
+        self._time = time
+        self._gamma = gamma
         self._n = self._ham.getDim()
-        if(time is not None):
-            self._time = time
-        if(gamma is not None):
-            self._gamma = gamma
         self._operator = np.zeros((self._n,self._n))
 
     def __mul__(self,other):

@@ -1,14 +1,17 @@
 import numpy as np
+from QuantumWalk.State import State
+import warnings
+warnings.filterwarnings("ignore")
 
 class QuantumWalk:
     def __init__(self,state,operator):
         self._n = state.getDim()
-        self._initState = state.getState()
+        self._initState = state.getStateVec()
         self._operator = operator.getOperator()
-        self._finalState = np.zeros((self._n, 1))
+        self._finalState = State(self._n)
 
     def buildWalk(self):
-        self._finalState = np.dot(self._operator, self._initState)
+        self._finalState.setStateVec(np.dot(self._operator, self._initState))
 
     def setInitState(self,newInitState):
         self._initState = newInitState
@@ -39,5 +42,5 @@ class QuantumWalk:
     def toProbability(self):
         probs = np.zeros((self._n, 1))
         for st in range(self._n):
-            probs[st] = self._finalState[st] * np.conjugate(self._finalState[st])
+            probs[st] = self._finalState.getStateVec()[st] * np.conjugate(self._finalState.getStateVec()[st])
         return probs
